@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -15,6 +18,11 @@ class AuthController extends Controller
         return view("Syncoweb.registration");
     }
 
+    public function homepage(){
+        return view("Syncoweb.homepage");
+    }
+
+
 
 
     //==UserAuthentication==//
@@ -24,7 +32,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:5|max:12'
+            'password' => 'required|min:5|max:20'
         ]);
 
         $user = new User();
@@ -42,4 +50,26 @@ class AuthController extends Controller
             return back()->with('fail', 'Registration Failed');
         }
     }
+    
+    public function loginUser(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:5|max:20'
+        ]);
+
+        $user = User::where('email', '=', $request->email)->first();
+        if($user){
+            if(Hash::check($request->password,$user->password)){
+                $request->session()->put('loginId',$user->id);
+                return redirect('homepage');
+            }
+            else{
+                return back()->with('fail','Incorrect Password');
+            }
+        }
+        else{
+            return back()->with('fail','Incorrect Email');
+        }
+    }
+
 }

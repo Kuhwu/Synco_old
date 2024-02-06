@@ -13,15 +13,22 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="landingpage.html" class="sign-in-form">
+          <form action="{{route('loginUser')}}" class="sign-in-form" method="post">
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{Session::get('success')}}</div>
+            @endif
+            @if(Session::has('fail'))
+            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
+            @csrf
             <h2 class="title">Log In</h2>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="text" placeholder="Email" />
+              <input type="text" placeholder="Email" name="email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
             </form>
@@ -35,7 +42,7 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <a href="synco_register.html">
+            <a href="{{route('registration')}}">
               <button class="btn transparent" id="sign-up-btn">
                 Sign up
               </button>

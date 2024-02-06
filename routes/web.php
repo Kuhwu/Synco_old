@@ -15,13 +15,16 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('Syncoweb.registration');
+    return view('Syncoweb.login');
 });
 
 //--Routing--//
 Route::get('/login',[AuthController::class,'login']);
-Route::get('/registration',[AuthController::class,'registration']);
+Route::get('/registration',[AuthController::class,'registration'])->name('registration');
+Route::get('/homepage',[AuthController::class,'homepage']);
 
 
 //--UserAuthentication--//
 Route::post('/register',[AuthController::class,'registerPost'])->name('register');
+Route::post('loginUser',[AuthController::class,'loginUser'])->name('loginUser');
+
