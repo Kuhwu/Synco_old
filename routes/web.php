@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Syncoweb.registration');
 });
+
+//--Routing--//
+Route::get('/login',[AuthController::class,'login']);
+Route::get('/registration',[AuthController::class,'registration']);
+
+
+//--UserAuthentication--//
+Route::post('/register',[AuthController::class,'registerPost'])->name('register');
