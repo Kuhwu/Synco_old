@@ -12,7 +12,9 @@ class UserController extends Controller
 {
     public function register (Request $request){
         $validator = Validator::make($request->all(),[
-            'name' => 'required|min:2|max:100',
+            'firstname' => 'required|min:2|max:100',
+            'lastname' => 'required|min:2|max:100',
+            'username' => 'required|min:2|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|same:password'
         ]);;
@@ -25,7 +27,9 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);

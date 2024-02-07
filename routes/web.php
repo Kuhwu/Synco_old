@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/login',[AuthController::class,'login'])->middleware('alreadyLoggedIn');
 Route::get('/registration',[AuthController::class,'registration'])->name('registration');
 Route::get('/homepage',[AuthController::class,'homepage'])->middleware('isLoggedIn');
+Route::get('/profile',[AuthController::class,'profile'])->middleware('isLoggedIn');
 Route::get('/logout',[AuthController::class,'logout']);
 
 

@@ -53,7 +53,7 @@
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <a href="friendlist.html" class="nav__dropdown-item">Friend List</a>
-                                        <a href="profile.html" class="nav__dropdown-item">Account</a>
+                                        <a href="profile" class="nav__dropdown-item">Account</a>
                                     </div>
                                 </div>
                             </div> 

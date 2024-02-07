@@ -17,19 +17,26 @@ class AuthController extends Controller
     public function registration(){
         return view("Syncoweb.registration");
     }
+
+    public function homepage(){
+        return view('Syncoweb.homepage');
+    }
     //==UserAuthentication==//
 
     public function registerPost(Request $request){
 
         $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:20'
         ]);
 
         $user = new User();
-
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
@@ -64,12 +71,12 @@ class AuthController extends Controller
         }
     }
 
-    public function homepage(){
+    public function profile(){
         $data = array();
         if(Session::has('loginId')){
             $data = User::where('id', '=', Session::get('loginId'))->first();
         }
-        return view('Syncoweb.homepage', compact('data'));
+        return view('Syncoweb.profile', compact('data'));
     }
     
     public function logout(){

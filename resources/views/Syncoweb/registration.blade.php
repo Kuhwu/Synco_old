@@ -25,8 +25,18 @@
             <h2 class="title">Register</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Name" name="name" required/>
-              <!--<span class="text-danger">@error('name') {{$message}} @enderror</span>-->
+              <input type="text" placeholder="Firstname" name="firstname" required/>
+              <!--<span class="text-danger">@error('firstname') {{$message}} @enderror</span>-->
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Lastname" name="lastname" required/>
+              <!--<span class="text-danger">@error('lastname') {{$message}} @enderror</span>-->
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" name="username" required/>
+              <!--<span class="text-danger">@error('username') {{$message}} @enderror</span>-->
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -50,7 +60,7 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <a href="synco_login.html">
+            <a href="login">
               <button class="btn transparent" id="sign-up-btn">
                 Sign In
               </button>
