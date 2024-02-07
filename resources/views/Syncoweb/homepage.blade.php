@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="synco_login.html" class="nav__link nav__logout">
+                <a href="logout" class="nav__link nav__logout">
                     <i class='bx bx-log-out nav__icon' ></i>
                     <span class="nav__name">Log Out</span>
                 </a>
@@ -94,7 +94,7 @@
                   <div class='project-tasks'>
                     <div class='project-column'>
                       <div class='project-column-heading'>
-                        <h2 class='project-column-heading__title'>Task Ready</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+                        <h2 class='project-column-heading__title'>To do</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
                       </div>
                       <div class='task' draggable='true'>
                         <div class='task__tags'><span class='task__tag task__tag--copyright'>Jem Zuckerberg</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>

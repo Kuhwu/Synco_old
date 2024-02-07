@@ -17,14 +17,6 @@ class AuthController extends Controller
     public function registration(){
         return view("Syncoweb.registration");
     }
-
-    public function homepage(){
-        return view("Syncoweb.homepage");
-    }
-
-
-
-
     //==UserAuthentication==//
 
     public function registerPost(Request $request){
@@ -72,4 +64,18 @@ class AuthController extends Controller
         }
     }
 
+    public function homepage(){
+        $data = array();
+        if(Session::has('loginId')){
+            $data = User::where('id', '=', Session::get('loginId'))->first();
+        }
+        return view('Syncoweb.homepage', compact('data'));
+    }
+    
+    public function logout(){
+        if(Session::has('loginId')){
+            Session::pull('loginId');
+            return redirect('login');
+        }
+    }
 }

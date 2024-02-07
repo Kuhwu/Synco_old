@@ -19,12 +19,13 @@ Route::get('/', function () {
 });
 
 //--Routing--//
-Route::get('/login',[AuthController::class,'login']);
+Route::get('/login',[AuthController::class,'login'])->middleware('alreadyLoggedIn');
 Route::get('/registration',[AuthController::class,'registration'])->name('registration');
-Route::get('/homepage',[AuthController::class,'homepage']);
+Route::get('/homepage',[AuthController::class,'homepage'])->middleware('isLoggedIn');
+Route::get('/logout',[AuthController::class,'logout']);
 
 
 //--UserAuthentication--//
 Route::post('/register',[AuthController::class,'registerPost'])->name('register');
-Route::post('loginUser',[AuthController::class,'loginUser'])->name('loginUser');
+Route::post('/loginUser',[AuthController::class,'loginUser'])->name('loginUser');
 
