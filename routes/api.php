@@ -25,7 +25,7 @@ Route::post('/auth/register',[UserController::class,'register']);
 Route::post('/auth/login', [UserController::class,'login']);
 Route::get('/auth/user',[UserController::class,'user'])->middleware('auth:sanctum');
 Route::get('/auth/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
-Route::post('/profile/change-password',[ProfileController::class,'change_password']);
-
+Route::post('/profile/change-password',[ProfileController::class,'change_password'])->middleware('auth:sanctum');
+Route::post('/profile/update-profile',[ProfileController::class,'update_profile'])->middleware('auth:sanctum');
 
 

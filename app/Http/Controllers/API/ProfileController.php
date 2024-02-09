@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Hash;
+use File;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,7 @@ class ProfileController extends Controller
 
         if($validator->fails()){
             return response()->json([
-                'message' => 'Validation Fails',,
+                'message' => 'Validation Fails',
                 'errors' => $validator->errors()
             ],422);
         }
@@ -34,9 +35,52 @@ class ProfileController extends Controller
         }
         else{
             return response()->json([
-                'message' => 'Old Password does not mathed',
+                'message' => 'Old Password does not matched',
                 'error' => $validator->errors()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             ],400);
         }
+    }
+
+    public function update_profile(Request $request){
+        $validator = Validator::make($request->all(),[
+            'username' => 'required|min:2|max:100',
+            'profession' => 'nullable|max:100',
+            'profile_photo' => 'nullable|image|mimes:jpg,bmp,png'
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'message' => 'Validation Fails',
+                'errors' => $validator->errors()
+            ],422);
+        }
+
+        $user=$request->user();
+
+        if($request->hasFile('profile_photo')){
+            if($user->profile_photo){
+                $old_path=public_path().'/uploads/profile_images/'.$user->profile_photo;
+
+                if(File::exists($old_path)){
+                    File::delete($old_path);
+                }
+            }
+
+            $image_name='profile-image'.time().'.'.$request->profile_photo->extension();
+            $request->profile_photo->move(public_path('/uploads/profile_images'),$image_name);
+        }
+        else{
+            $image_name=$user->profile_photo;
+        }
+
+        $user->update([
+            'username'=>$request->username,
+            'profession'=>$request->profession,
+            'profile_photo'=>$image_name
+        ]);
+
+        return response()->json([
+            'message'=>'Profile Successfully Updated',
+        ],200);
     }
 }

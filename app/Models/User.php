@@ -23,6 +23,12 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'profession',
+        'profile_photo'
+    ];
+
+    public $appends=[
+        'profile_image_url',
     ];
 
     /**
@@ -44,4 +50,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getProfileImageUrlAttribute(){
+        if($this->profile_photo){
+            return asset('/upload/profile_images/'.$this->profile_photo);
+        }
+        else{
+            return 'https://ui-avatar.com/api/?name='.urldecode($this->username);
+        }
+    }
 }
