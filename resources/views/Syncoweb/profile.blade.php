@@ -94,12 +94,16 @@
             <div class="col-lg-4">
               <div class="card shadow-sm">
                 <div class="card-header bg-transparent text-center">
-                  <img class="profile_img" src="assets/image/tempo_pfp.jpg" alt="student dp">
+                  @if($data->profile_photo)
+                    <img class="profile_img" src="{{ asset('uploads/profile_images/' . $data->profile_photo) }}" alt="User Profile">
+                  @else
+                  <img class="profile_img" src="{{ asset('uploads/default_images/default_profile.jpg') }}" alt="Default Profile Image">
+                  @endif
                   <h3>{{$data->username}}</h3>
                 </div>
                 <div class="card-body">
                   <p class="mb-0"><strong class="pr-1">Account ID #:</strong>{{$data->id}}</p>
-                  <p class="mb-0"><strong class="pr-1">Course:</strong>Bachelor of Science in Information Technology</p>
+                  <p class="mb-0"><strong class="pr-1">Course:</strong>{{$data->profession}}</p>
                 </div>
               </div>
             </div>
@@ -123,17 +127,17 @@
                     <tr>
                       <th width="30%">Gender</th>
                       <td width="2%">:</td>
-                      <td>Male</td>
+                      <td>{{$data->gender}}</td>
                     </tr>
                     <tr>
-                      <th width="30%">Peak Rank</th>
+                      <th width="30%">Location</th>
                       <td width="2%">:</td>
-                      <td>Warrior</td>
+                      <td>{{$data->location}}</td>
                     </tr>
                     <tr>
-                      <th width="30%">Current Rank</th>
+                      <th width="30%">Birthdate</th>
                       <td width="2%">:</td>
-                      <td>Warrior</td>
+                      <td>{{$data->birthdate}}</td>
                     </tr>
                   </table>
                 </div>
@@ -144,7 +148,7 @@
                   <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
                 </div>
                 <div class="card-body pt-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>{{$data->bio}}</p>
                 </div>
               </div>
             </div>

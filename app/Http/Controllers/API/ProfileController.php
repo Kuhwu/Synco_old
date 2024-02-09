@@ -45,7 +45,11 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(),[
             'username' => 'sometimes|min:2|max:100',
             'profession' => 'nullable|max:100',
-            'profile_photo' => 'nullable|image|mimes:jpg,bmp,png'
+            'profile_photo' => 'nullable|image|mimes:jpg,bmp,png',
+            'gender' => 'nullable|max:6',
+            'location'=> 'nullable|max:200',
+            'bio'=>'nullable|max:500',
+            'birthdate' =>'nullable|max:10'
         ]);
 
         if($validator->fails()){
@@ -75,7 +79,11 @@ class ProfileController extends Controller
 
         $user->update([
             'username'=>$request->username ?? $user->username,
-            'profession'=>$request->profession,
+            'profession'=>$request->profession ?? $user->profession,
+            'gender' => $request->gender ?? $user->gender,
+            'location'=> $request->location ?? $user->location,
+            'bio'=>$request->bio ?? $user->bio,
+            'birthdate' =>$request->birthdate ?? $user->birthdate,
             'profile_photo'=>$image_name
         ]);
 

@@ -24,7 +24,11 @@ class User extends Authenticatable
         'email',
         'password',
         'profession',
-        'profile_photo'
+        'profile_photo',
+        'gender',
+        'location',
+        'bio',
+        'birthdate'
     ];
 
     public $appends=[
@@ -56,7 +60,7 @@ class User extends Authenticatable
             return asset('/upload/profile_images/'.$this->profile_photo);
         }
         else{
-            return 'https://ui-avatar.com/api/?name='.urldecode($this->username);
+            return asset('/upload/default_images/default_profile.jpg');
         }
     }
 }
