@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
     public function update_profile(Request $request){
         $validator = Validator::make($request->all(),[
-            'username' => 'required|min:2|max:100',
+            'username' => 'sometimes|min:2|max:100',
             'profession' => 'nullable|max:100',
             'profile_photo' => 'nullable|image|mimes:jpg,bmp,png'
         ]);
@@ -74,7 +74,7 @@ class ProfileController extends Controller
         }
 
         $user->update([
-            'username'=>$request->username,
+            'username'=>$request->username ?? $user->username,
             'profession'=>$request->profession,
             'profile_photo'=>$image_name
         ]);

@@ -28,4 +28,3 @@ Route::get('/auth/logout',[UserController::class,'logout'])->middleware('auth:sa
 Route::post('/profile/change-password',[ProfileController::class,'change_password'])->middleware('auth:sanctum');
 Route::post('/profile/update-profile',[ProfileController::class,'update_profile'])->middleware('auth:sanctum');
 
-
